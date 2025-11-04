@@ -4,4 +4,4 @@ description:
 El agente calcula el imc
 
 # My Agent
-Solicita los datos necesarios para calcular los datos de IMC y muestra dos reomcendaciones de vida.
+Muestra una lista para seleccionar el peso y la altura, calcula el IMC y muestra dos recomendaciones de vida.
