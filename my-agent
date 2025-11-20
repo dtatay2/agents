@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""
+BMI Calculator Agent
+Calculates Body Mass Index and provides lifestyle recommendations
+"""
+
+def get_positive_float(prompt):
+    """Get a positive float value from user input."""
+    while True:
+        try:
+            value = float(input(prompt))
+            if value > 0:
+                return value
+            else:
+                print("Por favor, ingrese un valor positivo.")
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
+
+def calculate_bmi(weight_kg, height_m):
+    """Calculate BMI using weight in kg and height in meters."""
+    return weight_kg / (height_m ** 2)
+
+def get_bmi_category(bmi):
+    """Get BMI category based on WHO standards."""
+    if bmi < 18.5:
+        return "Bajo peso"
+    elif 18.5 <= bmi < 25:
+        return "Peso normal"
+    elif 25 <= bmi < 30:
+        return "Sobrepeso"
+    else:
+        return "Obesidad"
+
+def get_recommendations(bmi):
+    """Provide two lifestyle recommendations based on BMI."""
+    recommendations = []
+    
+    if bmi < 18.5:
+        recommendations.append("1. Consulte con un nutricionista para desarrollar un plan de alimentación que le ayude a alcanzar un peso saludable.")
+        recommendations.append("2. Incluya alimentos ricos en proteínas y nutrientes en su dieta diaria.")
+    elif 18.5 <= bmi < 25:
+        recommendations.append("1. Mantenga su peso actual con una dieta balanceada y ejercicio regular.")
+        recommendations.append("2. Realice al menos 150 minutos de actividad física moderada por semana.")
+    elif 25 <= bmi < 30:
+        recommendations.append("1. Reduzca el consumo de alimentos procesados y azúcares refinados.")
+        recommendations.append("2. Incorpore al menos 30 minutos de ejercicio cardiovascular diario.")
+    else:
+        recommendations.append("1. Consulte con un médico para desarrollar un plan de pérdida de peso seguro y efectivo.")
+        recommendations.append("2. Comience con actividades físicas de bajo impacto como caminar o nadar.")
+    
+    return recommendations
+
+def main():
+    """Main function to run the BMI calculator."""
+    print("=== Calculadora de IMC (Índice de Masa Corporal) ===\n")
+    
+    # Get user input
+    weight = get_positive_float("Ingrese su peso en kilogramos (kg): ")
+    height = get_positive_float("Ingrese su altura en metros (m): ")
+    
+    # Calculate BMI
+    bmi = calculate_bmi(weight, height)
+    category = get_bmi_category(bmi)
+    
+    # Display results
+    print(f"\n--- Resultados ---")
+    print(f"Peso: {weight} kg")
+    print(f"Altura: {height} m")
+    print(f"IMC: {bmi:.2f}")
+    print(f"Categoría: {category}")
+    
+    # Display recommendations
+    print(f"\n--- Recomendaciones ---")
+    recommendations = get_recommendations(bmi)
+    for recommendation in recommendations:
+        print(recommendation)
+    
+    print("\nNota: Estas recomendaciones son generales. Consulte con un profesional de la salud para un asesoramiento personalizado.")
+
+if __name__ == "__main__":
+    main()
